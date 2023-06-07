@@ -22,8 +22,6 @@ namespace ClientHotel.Database
     
         public int IdTypeRoom { get; set; }
         public string Name { get; set; }
-        public string Cost { get; set; }
-        public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Room { get; set; }

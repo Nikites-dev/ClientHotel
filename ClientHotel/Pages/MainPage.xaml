@@ -16,11 +16,58 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="20*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Hello"/>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <TextBlock Text="Kazon Hotels" FontSize="20"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="LightBlue">
+            <StackPanel Background="LightCoral" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Date arrive"/>
+                    <DatePicker></DatePicker>
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Date departure"/>
+                    <DatePicker></DatePicker>
+                </StackPanel>
+            </StackPanel>
+            
+            <Grid Background="red">
+              
+                    <ScrollViewer>
+                     
+                                <ListView x:Name="listTemplate" ScrollViewer.HorizontalScrollBarVisibility="Disabled"> 
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                           
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+
+
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Background="Green" >
+                                                <TextBlock Text="{Binding Number}" Padding="10"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                        </ScrollViewer>
+                 
+           
+            </Grid>
+            
+            
+           
+                
+            
+        </StackPanel>
     </Grid>
 </Page>

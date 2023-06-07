@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClientHotel.Database;
 
 namespace ClientHotel.Pages
 {
@@ -23,6 +24,50 @@ namespace ClientHotel.Pages
         public MainPage()
         {
             InitializeComponent();
+
+
+            Room room = new Room();
+            room.Number = 101;
+            room.CountClients = 5;
+
+            List<Room> rooms = new List<Room>();
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+            rooms.Add(room);
+
+            listTemplate.ItemsSource = rooms;
         }
     }
 }

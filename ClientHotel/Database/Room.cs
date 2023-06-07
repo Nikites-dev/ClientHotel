@@ -25,6 +25,8 @@ namespace ClientHotel.Database
         public Nullable<int> Number { get; set; }
         public Nullable<int> CountClients { get; set; }
         public Nullable<int> IdStatusRoom { get; set; }
+        public Nullable<int> Cost { get; set; }
+        public byte[] Image { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservation { get; set; }
