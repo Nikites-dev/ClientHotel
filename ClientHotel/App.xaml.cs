@@ -14,6 +14,6 @@ namespace ClientHotel
     /// </summary>
     public partial class App : Application
     {
-        ClientHotelEntities Connection = new ClientHotelEntities();
+       public static ClientHotelEntities Connection = new ClientHotelEntities();
     }
 }

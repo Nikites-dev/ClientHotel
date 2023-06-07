@@ -30,44 +30,16 @@ namespace ClientHotel.Pages
             room.Number = 101;
             room.CountClients = 5;
 
-            List<Room> rooms = new List<Room>();
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
-            rooms.Add(room);
+            List<Room> rooms = App.Connection.Room.ToList();
+        
 
             listTemplate.ItemsSource = rooms;
+        }
+
+        private void listTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Room room = (Room)listTemplate.SelectedItem;
+            NavigationService.Navigate(new RoomPage(room));
         }
     }
 }

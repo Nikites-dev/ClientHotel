@@ -1,4 +1,4 @@
-﻿using ClientHotel.Pages;
+﻿using ClientHotel.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +14,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ClientHotel
+namespace ClientHotel.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for RoomPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RoomPage : Page
     {
-        public MainWindow()
+        public RoomPage()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new Authorization());
+        }
+
+        public RoomPage(Room room)
+        {
+            InitializeComponent();
+
+            edText.Text = room.Number.ToString();
         }
     }
 }
