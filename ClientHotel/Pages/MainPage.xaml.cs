@@ -25,21 +25,59 @@ namespace ClientHotel.Pages
         {
             InitializeComponent();
 
-
-            Room room = new Room();
-            room.Number = 101;
-            room.CountClients = 5;
-
+            CheckStatusRoom();
+            
             List<Room> rooms = App.Connection.Room.ToList();
-        
-
             listTemplate.ItemsSource = rooms;
         }
 
         private void listTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Room room = (Room)listTemplate.SelectedItem;
-            NavigationService.Navigate(new RoomPage(room));
+
+            if (room.IdStatusRoom == 2)
+            {
+                NavigationService.Navigate(new ClientsPage());
+            }
+            else
+            {
+                NavigationService.Navigate(new RoomPage(room));
+            }
+        }
+
+        void CheckStatusRoom()
+        {
+            var rooms = App.Connection.Room.ToList();
+
+            foreach (var room in rooms)
+            {
+                Reservation reservExist = App.Connection.Reservation.Where(x => x.IdRoom == room.IdRoom).FirstOrDefault();
+
+                if (reservExist == null)
+                {
+                    return;
+                }
+
+                if (reservExist.DateDeparture < DateTime.Now)
+                {
+                    room.IdStatusRoom = 3;
+
+                    if (reservExist.DateDeparture + TimeSpan.FromHours(1) < DateTime.Now)
+                    {
+                        room.IdStatusRoom = 2;
+
+                        ReservationUser reservUser = App.Connection.ReservationUser.Where(x => x.IdReservation == reservExist.IdReservation).FirstOrDefault();
+
+                        if (reservUser != null)
+                        {
+                            App.Connection.ReservationUser.Remove(reservUser);
+                            App.Connection.Reservation.Remove(reservExist);
+                        }
+                    }
+
+                    App.Connection.SaveChanges();
+                }
+            }
         }
     }
 }

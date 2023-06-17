@@ -16,21 +16,39 @@ using System.Windows.Shapes;
 
 namespace ClientHotel.Pages
 {
-    /// <summary>
-    /// Interaction logic for RoomPage.xaml
-    /// </summary>
     public partial class RoomPage : Page
     {
-        public RoomPage()
-        {
-            InitializeComponent();
-        }
-
         public RoomPage(Room room)
         {
             InitializeComponent();
 
-            edText.Text = room.Number.ToString();
+            txtNumRoom.Text = room.Number.ToString();
+            txtStatus.Text = room.StatusRoom.Name.ToString();
+            txtTypeRoom.Text = room.TypeRoom.Name.ToString();
+            txtCountClients.Text = room.CountClients.ToString();
+            txtCost.Text = room.Cost.ToString();
+
+            var reserv = GetReservation(room.IdRoom);
+
+            if (reserv == null)
+            {
+                return;
+            }
+
+            dateArrive.Text = reserv.DateArrival.Value.ToString();
+            dateDeparture.Text = reserv.DateDeparture.Value.ToString();
+            dateArrive.Focusable = false;
+
+
+            listViewClients.ItemsSource = App.Connection.ReservationUser
+                .Where(x => x.IdReservation == reserv.IdReservation).ToList();
+        }
+
+
+
+        Reservation GetReservation(int roomId)
+        {
+            return App.Connection.Reservation.Where(x => x.IdRoom == roomId).FirstOrDefault();
         }
     }
 }
