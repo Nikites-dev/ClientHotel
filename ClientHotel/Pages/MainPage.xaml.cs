@@ -25,6 +25,8 @@ namespace ClientHotel.Pages
         {
             InitializeComponent();
 
+            dateArrive.Text = DateTime.Today.ToString();
+            dateDeparture.Text = (DateTime.Today + TimeSpan.FromDays(1)).ToString();
             CheckStatusRoom();
             
             List<Room> rooms = App.Connection.Room.ToList();
@@ -37,7 +39,7 @@ namespace ClientHotel.Pages
 
             if (room.IdStatusRoom == 2)
             {
-                NavigationService.Navigate(new ClientsPage());
+                NavigationService.Navigate(new ReservationPage(room, dateArrive.Text, dateDeparture.Text));
             }
             else
             {
@@ -78,6 +80,11 @@ namespace ClientHotel.Pages
                     App.Connection.SaveChanges();
                 }
             }
+        }
+
+        private void BtnAddClient_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddUserPage());
         }
     }
 }

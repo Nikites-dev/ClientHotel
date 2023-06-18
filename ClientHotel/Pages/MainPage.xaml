@@ -23,7 +23,7 @@
 
        
        
-        <Grid Grid.Column="1" >
+        <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -31,25 +31,22 @@
 
             <TextBlock Text="Kazon Hotels" FontSize="20" Grid.Column="0" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Button x:Name="btnClients" Content="Clients" Grid.Column="1" Width="100"/>
+                <Button x:Name="btnClients" Content="Add room" Grid.Column="1" Width="100"/>
+                <Button x:Name="btnAddClient" Content="Add Client" Grid.Column="1" Width="100" Click="BtnAddClient_OnClick"/>
                 <Button x:Name="btnOther" Content="Clients" Grid.Column="1" Width="100"/>
             </StackPanel>
-            
         </Grid>
-            
-
-     
         
         <StackPanel Grid.Column="1" Grid.Row="1" Background="LightBlue">
             <StackPanel Background="LightCoral" Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Date arrive"/>
-                    <DatePicker></DatePicker>
+                    <DatePicker x:Name="dateArrive"></DatePicker>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Date departure"/>
-                    <DatePicker></DatePicker>
+                    <DatePicker x:Name="dateDeparture"></DatePicker>
                 </StackPanel>
             </StackPanel>
             
@@ -68,21 +65,30 @@
 
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid Background="Green" >
+                                            <Grid x:Name="boxColor" Background="Green" >
                                                 <TextBlock Text="{Binding Number}" Padding="20"/>
                                             </Grid>
+                                            
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding IdStatusRoom}" Value="1">
+                                                    <Setter TargetName="boxColor" Property="Background" Value="Red"/>
+                                                </DataTrigger>
+                                                
+                                                <DataTrigger Binding="{Binding IdStatusRoom}" Value="2">
+                                                    <Setter TargetName="boxColor" Property="Background" Value="Green"/>
+                                                </DataTrigger>
+                                                
+                                                <DataTrigger Binding="{Binding IdStatusRoom}" Value="3">
+                                                    <Setter TargetName="boxColor" Property="Background" Value="Yellow"/>
+                                                </DataTrigger>
+                                                
+                                            </DataTemplate.Triggers>
+                                            
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                         </ScrollViewer>
-                 
-           
             </Grid>
-            
-            
-           
-                
-            
         </StackPanel>
     </Grid>
 </Page>
