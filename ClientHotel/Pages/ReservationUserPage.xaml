@@ -58,7 +58,65 @@
                             <TextBlock Text="Дата рождения" Width="100"/>
                             <TextBlock Text="Телефон" Width="100"/>
                         </StackPanel>
-                        <ListView x:Name="listViewUsers" SelectionChanged="ListViewUsers_OnSelectionChanged">
+                        <ListView x:Name="listViewUsers" SelectionChanged="ListViewUsers_OnSelectionChanged" Height="300">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding LName}" Width="100"/>
+                                        <TextBlock Text="{Binding FName}" Width="100"/>
+                                        <TextBlock Text="{Binding PName}" Width="100"/>
+                                        <TextBlock Text="{Binding DateBirth, StringFormat='dd-mm-yyyy'}" Width="100"/>
+                                        <TextBlock Text="{Binding Phone}" Width="100"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        
+                        <Button Content="Добавить"/>
+                    </StackPanel>
+                    
+                </StackPanel>
+                
+            </Grid>
+            
+            <Grid Grid.Column="1" Background="LightGreen">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                
+                <Grid Background="Bisque">
+                    <StackPanel>
+                        <TextBlock Text="Номер"/>
+                    
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="№ комнаты:"/>
+                            <TextBlock x:Name="txtNumber"/>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Гости:"/>
+                            <TextBlock x:Name="txtCrntCount" Text="0"/>
+                            <TextBlock Text="/"/>
+                            <TextBlock x:Name="txtCountClients" Text="0"/>
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    
+                </Grid>
+                
+                <Grid Grid.Row="1" Background="LightPink">
+                    <StackPanel>
+                        <TextBlock Text="Гости"/>
+                        <StackPanel Orientation="Horizontal" Background="Gray">
+                            <TextBlock Text="Фамилия" Width="100"/>
+                            <TextBlock Text="Имя" Width="100"/>
+                            <TextBlock Text="Отчество" Width="100"/>
+                            <TextBlock Text="Дата рождения" Width="100"/>
+                            <TextBlock Text="Телефон" Width="100"/>
+                        </StackPanel>
+                        <ListView x:Name="listViewChooseUsers">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -73,23 +131,7 @@
                         </ListView>
                     </StackPanel>
                     
-                </StackPanel>
-                
-            </Grid>
-            
-            <Grid Grid.Column="1" Background="LightGreen">
-                
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="2*"/>
-                </Grid.RowDefinitions>
-                
-                <Grid Background="Bisque">
-                    <TextBlock Text="Найти гостя"/>    
-                </Grid>
-                
-                <Grid Grid.Row="1" Background="LightPink">
-                    <TextBlock Text="Гости"/>
+                    
                 </Grid>
             </Grid>
         </Grid>
