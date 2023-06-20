@@ -18,37 +18,37 @@ namespace ClientHotel.Pages
 {
     public partial class RoomPage : Page
     {
-        public RoomPage(Room room)
+        public RoomPage(Reservation serevRoom)
         {
             InitializeComponent();
 
-            txtNumRoom.Text = room.Number.ToString();
-            txtStatus.Text = room.StatusRoom.Name.ToString();
-            txtTypeRoom.Text = room.TypeRoom.Name.ToString();
-            txtCountClients.Text = room.CountClients.ToString();
-            txtCost.Text = room.Cost.ToString();
+            txtNumRoom.Text = serevRoom.Room.Number.ToString();
+            txtStatus.Text = serevRoom.Room.StatusRoom.Name.ToString();
+            txtTypeRoom.Text = serevRoom.Room.TypeRoom.Name.ToString();
+            txtCountClients.Text = serevRoom.Room.CountClients.ToString();
+            txtCost.Text = serevRoom.Room.Cost.ToString();
 
-            var reserv = GetReservation(room.IdRoom);
+           // var reserv = GetReservation(serevRoom.IdReservation);
 
-            if (reserv == null)
+            if (serevRoom == null)
             {
                 return;
             }
 
-            dateArrive.Text = reserv.DateArrival.Value.ToString();
-            dateDeparture.Text = reserv.DateDeparture.Value.ToString();
+            dateArrive.Text = serevRoom.DateArrival.Value.ToString();
+            dateDeparture.Text = serevRoom.DateDeparture.Value.ToString();
             dateArrive.Focusable = false;
 
 
             listViewClients.ItemsSource = App.Connection.ReservationUser
-                .Where(x => x.IdReservation == reserv.IdReservation).ToList();
+                .Where(x => x.IdReservation == serevRoom.IdReservation).ToList();
         }
 
 
 
-        Reservation GetReservation(int roomId)
-        {
-            return App.Connection.Reservation.Where(x => x.IdRoom == roomId).FirstOrDefault();
-        }
+        // Reservation GetReservation(int idReservation)
+        // {
+        //     return App.Connection.Reservation.Where(x => x.IdRoom == roomId).FirstOrDefault();
+        // }
     }
 }

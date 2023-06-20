@@ -72,7 +72,7 @@
                             </ListView.ItemTemplate>
                         </ListView>
                         
-                        <Button Content="Добавить"/>
+                        
                     </StackPanel>
                     
                 </StackPanel>
@@ -116,7 +116,7 @@
                             <TextBlock Text="Дата рождения" Width="100"/>
                             <TextBlock Text="Телефон" Width="100"/>
                         </StackPanel>
-                        <ListView x:Name="listViewChooseUsers">
+                        <ListView x:Name="listViewChooseUsers" SelectionChanged="ListViewChooseUsers_OnSelectionChanged">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -129,6 +129,7 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <Button Content="Забронировать" Click="ButtonBase_OnClick"/>
                     </StackPanel>
                     
                     

@@ -29,22 +29,62 @@ namespace ClientHotel.Pages
             dateDeparture.Text = (DateTime.Today + TimeSpan.FromDays(1)).ToString();
             CheckStatusRoom();
             
-            List<Room> rooms = App.Connection.Room.ToList();
-            listTemplate.ItemsSource = rooms;
+            
+            
+            ShowStatusRoom();
         }
 
         private void listTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Room room = (Room)listTemplate.SelectedItem;
 
+            var reservRoomList = App.Connection.Reservation.Where(x => x.IdRoom == room.IdRoom).ToList();
+            var reservRoom = reservRoomList.Where(o => DateTime.Parse(dateArrive.Text) >= o.DateArrival && DateTime.Parse(dateDeparture.Text) <= o.DateDeparture)
+                .FirstOrDefault();
+            
             if (room.IdStatusRoom == 2)
             {
                 NavigationService.Navigate(new ReservationPage(room, dateArrive.Text, dateDeparture.Text));
             }
             else
             {
-                NavigationService.Navigate(new RoomPage(room));
+                NavigationService.Navigate(new RoomPage(reservRoom));
             }
+        }
+
+        void ShowStatusRoom()
+        {
+            List<Room> rooms = App.Connection.Room.ToList();
+            List<Room> avaliableRooms = new List<Room>();
+            
+            foreach (var room in rooms)
+            {
+                var reservRoomList = App.Connection.Reservation.Where(x => x.IdRoom == room.IdRoom).ToList();
+                var reservRoom = reservRoomList.Where(o => DateTime.Parse(dateArrive.Text) >= o.DateArrival && DateTime.Parse(dateDeparture.Text) <= o.DateDeparture)
+                    .FirstOrDefault();
+                
+
+                if (reservRoom == null)
+                {
+                    room.IdStatusRoom = 2;
+                    avaliableRooms.Add(room);
+                }
+                else
+                {
+                    if (DateTime.Parse(dateArrive.Text) >= reservRoom.DateArrival && DateTime.Parse(dateDeparture.Text) <= reservRoom.DateDeparture)
+                    {
+                        room.IdStatusRoom = 1;
+                        avaliableRooms.Add(room);
+                    }
+                    else
+                    {
+                        room.IdStatusRoom = 2;
+                        avaliableRooms.Add(room);
+                    }
+                }
+            }
+
+            listTemplate.ItemsSource = avaliableRooms;
         }
 
         void CheckStatusRoom()
@@ -57,7 +97,7 @@ namespace ClientHotel.Pages
 
                 if (reservExist == null)
                 {
-                    return;
+                    continue;
                 }
 
                 if (reservExist.DateDeparture < DateTime.Now)
@@ -74,10 +114,10 @@ namespace ClientHotel.Pages
                         {
                             App.Connection.ReservationUser.Remove(reservUser);
                             App.Connection.Reservation.Remove(reservExist);
+                            
+                            App.Connection.SaveChanges();
                         }
                     }
-
-                    App.Connection.SaveChanges();
                 }
             }
         }
@@ -85,6 +125,16 @@ namespace ClientHotel.Pages
         private void BtnAddClient_OnClick(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddUserPage());
+        }
+
+        private void DateArrive_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dateArrive.SelectedDate != null)
+            {
+                var arrDate = dateArrive;
+                dateDeparture.Text = (DateTime.Parse(dateArrive.Text) + TimeSpan.FromDays(1)).ToString(); 
+                ShowStatusRoom();
+            }
         }
     }
 }

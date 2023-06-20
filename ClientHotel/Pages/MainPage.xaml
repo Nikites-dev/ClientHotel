@@ -41,7 +41,7 @@
             <StackPanel Background="LightCoral" Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Date arrive"/>
-                    <DatePicker x:Name="dateArrive"></DatePicker>
+                    <DatePicker x:Name="dateArrive" SelectedDateChanged="DateArrive_OnSelectedDateChanged"></DatePicker>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal">
