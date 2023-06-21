@@ -20,8 +20,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        
-        <Grid Grid.Column="1" >
+
+        <Grid Grid.Column="1"  Style="{StaticResource HeaderPanel}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -29,8 +29,7 @@
 
             <TextBlock Text="Kazon Hotels" FontSize="20" Grid.Column="0" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Button x:Name="btnClients" Content="Clients" Grid.Column="1" Width="100"/>
-                <Button x:Name="btnOther" Content="Clients" Grid.Column="1" Width="100"/>
+                <Button x:Name="btnOther" Content="Назад" Grid.Column="1" Width="100"  Style="{StaticResource BtnSecondary}"/>
             </StackPanel>
         </Grid>
         
@@ -41,56 +40,70 @@
                 <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <StackPanel Grid.Column="1" Background="LightCoral" >
+
+            <Border  Grid.Column="1" Margin="10" Background="#81d8d0" x:Name="boxColor" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="10">
                 <StackPanel>
-                    <TextBlock Text="Бронирование комнаты" HorizontalAlignment="Center"/>
-                </StackPanel>
-                
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="№ комнаты: "/>
-                    <TextBlock x:Name="txtNumRoom" Text="null"/>
-                </StackPanel>
-            
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Статус: "/>
-                    <TextBlock x:Name="txtStatus" Text="null"/>
-                </StackPanel>
-            
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="тип: "/>
-                    <TextBlock x:Name="txtTypeRoom" Text="null"/>
-                </StackPanel>
-            
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Количество гостей: "/>
-                    <TextBlock x:Name="txtCountClients" Text="null"/>
-                </StackPanel>
-            
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Цена за сутки: "/>
-                    <TextBlock x:Name="txtCost" Text="null"/>
-                </StackPanel>
-                
-                <StackPanel Orientation="Horizontal">
-                    <StackPanel>
-                        <TextBlock Text="Дата заселения: "/>
-                        <TextBlock x:Name="dateArrive" Text="null"/>
+                   
+                        <StackPanel Background="Transparent"  Style="{StaticResource cardRow2}">
+                            <TextBlock Text="Бронирование комнаты" HorizontalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+
+                    <Border Margin="3" BorderThickness="1,1,1,1" CornerRadius="7" Background="White">
+                        <StackPanel Orientation="Horizontal"  Style="{StaticResource cardRow2}">
+                            <TextBlock Text="№ комнаты: "/>
+                            <TextBlock x:Name="txtNumRoom" Text="null"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Margin="3" BorderThickness="1,1,1,1" CornerRadius="7" Background="White">
+                        <StackPanel Orientation="Horizontal"  Style="{StaticResource cardRow2}">
+                        <TextBlock Text="Статус: "/>
+                        <TextBlock x:Name="txtStatus" Text="null"/>
                     </StackPanel>
-                
-                    <StackPanel>
-                        <TextBlock Text="Дата выселения: "/>
-                        <TextBlock x:Name="dateDeparture" Text="null"/>
-                    </StackPanel>    
+                    </Border>
+
+                    <Border Margin="3" BorderThickness="1,1,1,1" CornerRadius="7" Background="White">
+                            <StackPanel Orientation="Horizontal"  Style="{StaticResource cardRow2}">
+                        <TextBlock Text="тип: "/>
+                        <TextBlock x:Name="txtTypeRoom" Text="null"/>
+                    </StackPanel>
+                    </Border>
+
+                    <Border Margin="3" BorderThickness="1,1,1,1" CornerRadius="7" Background="White">
+                        <StackPanel Orientation="Horizontal"  Style="{StaticResource cardRow2}">
+                            <TextBlock Text="Количество гостей: "/>
+                            <TextBlock x:Name="txtCountClients" Text="null"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Margin="3" BorderThickness="1,1,1,1" CornerRadius="7" Background="White">
+                        <StackPanel Orientation="Horizontal"  Style="{StaticResource cardRow2}">
+                            <TextBlock Text="Цена за сутки: "/>
+                            <TextBlock x:Name="txtCost" Text="null"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Margin="3" BorderThickness="1,1,1,1" CornerRadius="7" Background="White">
+                        <StackPanel Orientation="Horizontal"  Style="{StaticResource cardRow2}">
+                            <StackPanel>
+                                <TextBlock Text="Дата заселения: "/>
+                                <TextBlock x:Name="dateArrive" Text="null"/>
+                            </StackPanel>
+
+                            <StackPanel Margin="30, 0, 0, 0">
+                                <TextBlock Text="Дата выселения: "/>
+                                <TextBlock x:Name="dateDeparture" Text="null"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+
+                    <StackPanel  Style="{StaticResource cardRow}">
+                        <Button Content="Продолжить" Click="ButtonContinueOnClick"  Style="{StaticResource BtnPrimary}"/>
+                    </StackPanel>
                 </StackPanel>
-                
-                <StackPanel>
-                    <Button Content="Продолжить" Click="ButtonContinueOnClick"/>
-                </StackPanel>
-            </StackPanel>
-            
-           
-            <Grid Grid.Column="2" Height="200" VerticalAlignment="Top">
+            </Border>
+
+            <Grid Grid.Column="2" Height="200" VerticalAlignment="Top" Background="Transparent" Margin="10">
                 <Image x:Name="imageView"/>
             </Grid>
         </Grid>

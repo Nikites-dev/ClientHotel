@@ -20,8 +20,8 @@
             <RowDefinition Height="20*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Column="1" >
+
+        <Grid Grid.Column="1" Style="{StaticResource HeaderPanel}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -29,50 +29,52 @@
 
             <TextBlock Text="Kazon Hotels" FontSize="20" Grid.Column="0" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Button x:Name="btnClients" Content="Назад" Grid.Column="1" Width="100" Click="BtnClients_OnClick"/>
+                <Button x:Name="btnClients" Content="Назад" Grid.Column="1" Width="100" Style="{StaticResource BtnSecondary}" Click="BtnClients_OnClick"/>
             </StackPanel>
         </Grid>
-        
-        <Grid Grid.Column="1" Grid.Row="1" Background="LightBlue">
-            <StackPanel Width="400" Background="LightCoral">
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="Добавление комнаты"/>
-                </StackPanel>
-                
-                <StackPanel Margin="10">
-                    <TextBlock Text="№ комнаты:"/>
-                    <TextBox x:Name="edNumber"/>
-                </StackPanel>
-                
-                <StackPanel Margin="10">
-                    <TextBlock Text="Статус комнаты:"/>
-                    <TextBox Text="Свободен" IsEnabled="False"/>
-                </StackPanel>
-                
-                <StackPanel Margin="10">
-                    <TextBlock FontSize="10" Text="Тип комнаты: (1-King, 2-Two Doubles, 3-Junior Suite, 4-Family 3, 5-Family 4)" />
-                    <TextBox x:Name="edType" Text="1"/>
-                </StackPanel>
-                
-                <StackPanel Margin="10">
-                    <TextBlock Text="Количество гостей:"/>
-                    <TextBox x:Name="edCountClients" Text="1"/>
-                </StackPanel>
-                
-                <StackPanel Margin="10">
-                    <TextBlock Text="Цена:"/>
-                    <TextBox x:Name="edCost" Text="10000"/>
-                </StackPanel>
-                
-                <StackPanel Margin="10">
-                    <Button Content="Выбрать изображение" Click="BtnImage_OnClick"/>
-                </StackPanel>
 
-                <StackPanel Margin="10">
-                    <Button x:Name="btnAdd" Content="Добавить" Click="BtnAdd_OnClick"/>
+        <Grid Grid.Column="1" Grid.Row="1" Background="#F2F5F4">
+            <Border  Grid.Column="1"  Width="400" Margin="10" Height="600" Background="#81d8d0" x:Name="boxColor" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="10">
+                <StackPanel>
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock FontSize="18" Text="Добавление комнаты"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Style="{StaticResource cardRow}">
+                        <TextBlock Text="№ комнаты:"/>
+                        <TextBox x:Name="edNumber" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Style="{StaticResource cardRow}">
+                        <TextBlock Text="Статус комнаты:"/>
+                        <TextBox Text="Свободен" IsEnabled="False" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Style="{StaticResource cardRow}">
+                        <TextBlock FontSize="10" Text="Тип комнаты: (1-King, 2-Two Doubles, 3-Junior Suite, 4-Family 3, 5-Family 4)" />
+                        <TextBox x:Name="edType" Text="1" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Style="{StaticResource cardRow}">
+                        <TextBlock Text="Количество гостей:"/>
+                        <TextBox x:Name="edCountClients" Text="1" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Style="{StaticResource cardRow}">
+                        <TextBlock Text="Цена:"/>
+                        <TextBox x:Name="edCost" Text="10000" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Style="{StaticResource cardRow}">
+                        <Button Content="Выбрать изображение" Click="BtnImage_OnClick" Style="{StaticResource BtnPrimary}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Style="{StaticResource cardRow}">
+                        <Button x:Name="btnAdd" Content="Добавить" Click="BtnAdd_OnClick" Style="{StaticResource BtnPrimary}"/>
+                    </StackPanel>
+
                 </StackPanel>
-                
-            </StackPanel>
+            </Border>
         </Grid>
     </Grid>
 </Page>

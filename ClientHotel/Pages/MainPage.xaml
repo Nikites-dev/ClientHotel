@@ -39,8 +39,8 @@
             </StackPanel>
         </Grid>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Background="#F2F5F4">
-            <StackPanel Orientation="Horizontal">
+        <StackPanel Grid.Column="1" Grid.Row="1" >
+            <StackPanel Orientation="Horizontal" Background="#F2F5F4">
                 <StackPanel Margin="5">
                     <TextBlock Text="Date arrive"/>
                     <DatePicker DisplayDateStart="" x:Name="dateArrive" SelectedDateChanged="DateArrive_OnSelectedDateChanged"></DatePicker>
