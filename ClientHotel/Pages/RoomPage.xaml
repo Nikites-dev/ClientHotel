@@ -134,7 +134,7 @@
             </Grid>
             
             <Grid Grid.Column="1" Background="LightBlue">
-                <TextBlock Text="Image" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image x:Name="imageView"/>
             </Grid>
             
         </Grid>

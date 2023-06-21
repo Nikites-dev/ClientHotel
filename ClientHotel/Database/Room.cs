@@ -22,7 +22,7 @@ namespace ClientHotel.Database
     
         public int IdRoom { get; set; }
         public Nullable<int> IdTypeRoom { get; set; }
-        public Nullable<int> Number { get; set; }
+        public int Number { get; set; }
         public Nullable<int> CountClients { get; set; }
         public Nullable<int> IdStatusRoom { get; set; }
         public Nullable<int> Cost { get; set; }

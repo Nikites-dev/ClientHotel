@@ -91,8 +91,7 @@
             
            
             <Grid Grid.Column="2" Height="200" VerticalAlignment="Top">
-                
-                <TextBlock Text="Image" Background="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image x:Name="imageView"/>
             </Grid>
         </Grid>
     </Grid>

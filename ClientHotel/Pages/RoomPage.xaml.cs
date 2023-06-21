@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ClientHotel.Services;
 
 namespace ClientHotel.Pages
 {
@@ -23,11 +24,11 @@ namespace ClientHotel.Pages
             InitializeComponent();
 
             txtNumRoom.Text = serevRoom.Room.Number.ToString();
-            txtStatus.Text = serevRoom.Room.StatusRoom.Name.ToString();
+            txtStatus.Text = App.Connection.StatusRoom.Where(x => x.IdStatusRoom == serevRoom.Room.IdStatusRoom).FirstOrDefault().Name;
             txtTypeRoom.Text = serevRoom.Room.TypeRoom.Name.ToString();
             txtCountClients.Text = serevRoom.Room.CountClients.ToString();
             txtCost.Text = serevRoom.Room.Cost.ToString();
-
+            imageView.Source = ByteToImage.LoadImage(serevRoom.Room.Image);
            // var reserv = GetReservation(serevRoom.IdReservation);
 
             if (serevRoom == null)

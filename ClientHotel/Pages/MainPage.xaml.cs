@@ -29,7 +29,8 @@ namespace ClientHotel.Pages
             dateDeparture.Text = (DateTime.Today + TimeSpan.FromDays(1)).ToString();
             CheckStatusRoom();
             
-            
+            dateArrive.DisplayDateStart = DateTime.Now;
+            dateDeparture.DisplayDateStart = DateTime.Now + TimeSpan.FromDays(1);
             
             ShowStatusRoom();
         }
@@ -37,10 +38,12 @@ namespace ClientHotel.Pages
         private void listTemplate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Room room = (Room)listTemplate.SelectedItem;
-
+          
             var reservRoomList = App.Connection.Reservation.Where(x => x.IdRoom == room.IdRoom).ToList();
-            var reservRoom = reservRoomList.Where(o => DateTime.Parse(dateArrive.Text) >= o.DateArrival && DateTime.Parse(dateDeparture.Text) <= o.DateDeparture)
-                .FirstOrDefault();
+            var reservRoom = reservRoomList.Where(o => 
+                (DateTime.Parse(dateArrive.Text) <= o.DateArrival && DateTime.Parse(dateDeparture.Text) >= o.DateDeparture) ||
+                (DateTime.Parse(dateDeparture.Text) >= o.DateArrival && DateTime.Parse(dateDeparture.Text) <= o.DateDeparture) ||
+                (DateTime.Parse(dateArrive.Text) >= o.DateArrival && DateTime.Parse(dateArrive.Text) <= o.DateDeparture)).FirstOrDefault();
             
             if (room.IdStatusRoom == 2)
             {
@@ -60,9 +63,17 @@ namespace ClientHotel.Pages
             foreach (var room in rooms)
             {
                 var reservRoomList = App.Connection.Reservation.Where(x => x.IdRoom == room.IdRoom).ToList();
-                var reservRoom = reservRoomList.Where(o => DateTime.Parse(dateArrive.Text) >= o.DateArrival && DateTime.Parse(dateDeparture.Text) <= o.DateDeparture)
-                    .FirstOrDefault();
-                
+          
+                 var reservRoom = reservRoomList.Where(o => 
+                     (DateTime.Parse(dateArrive.Text) <= o.DateArrival && DateTime.Parse(dateDeparture.Text) >= o.DateDeparture) ||
+                     (DateTime.Parse(dateDeparture.Text) >= o.DateArrival && DateTime.Parse(dateDeparture.Text) <= o.DateDeparture) ||
+                     (DateTime.Parse(dateArrive.Text) >= o.DateArrival && DateTime.Parse(dateArrive.Text) <= o.DateDeparture)).FirstOrDefault();
+          
+
+                if (room.Number == 215)
+                {
+                    int t = 0;
+                }
 
                 if (reservRoom == null)
                 {
@@ -71,16 +82,8 @@ namespace ClientHotel.Pages
                 }
                 else
                 {
-                    if (DateTime.Parse(dateArrive.Text) >= reservRoom.DateArrival && DateTime.Parse(dateDeparture.Text) <= reservRoom.DateDeparture)
-                    {
-                        room.IdStatusRoom = 1;
-                        avaliableRooms.Add(room);
-                    }
-                    else
-                    {
-                        room.IdStatusRoom = 2;
-                        avaliableRooms.Add(room);
-                    }
+                    room.IdStatusRoom = 1;
+                    avaliableRooms.Add(room);
                 }
             }
 
@@ -112,10 +115,18 @@ namespace ClientHotel.Pages
 
                         if (reservUser != null)
                         {
-                            App.Connection.ReservationUser.Remove(reservUser);
-                            App.Connection.Reservation.Remove(reservExist);
+                            try
+                            {
+                                App.Connection.ReservationUser.Remove(reservUser);
+                                App.Connection.SaveChanges();
+                                App.Connection.Reservation.Remove(reservExist);
+                                App.Connection.SaveChanges();
+                            }
+                            catch (Exception e)
+                            {
+                                MessageBox.Show(e.Message.ToString());
+                            }
                             
-                            App.Connection.SaveChanges();
                         }
                     }
                 }
@@ -135,6 +146,22 @@ namespace ClientHotel.Pages
                 dateDeparture.Text = (DateTime.Parse(dateArrive.Text) + TimeSpan.FromDays(1)).ToString(); 
                 ShowStatusRoom();
             }
+        }
+
+        private void BtnClients_OnClick(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddRoomPage());
+        }
+
+        private void DateDeparture_OnSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(DateTime.Parse(dateDeparture.Text) <= DateTime.Parse(dateArrive.Text))
+            {
+                MessageBox.Show("Дата выезда не может быть раньше дате заеда!");
+                dateDeparture.Text = (DateTime.Parse(dateArrive.Text) + TimeSpan.FromDays(1)).ToString();
+                return;
+            }
+            ShowStatusRoom();
         }
     }
 }

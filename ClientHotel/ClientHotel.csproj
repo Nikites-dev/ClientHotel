@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\AddRoomPage.xaml" />
     <Page Include="Pages\AddUserPage.xaml" />
     <Page Include="Pages\Authorization.xaml">
       <SubType>Designer</SubType>
@@ -124,6 +125,9 @@
     <Compile Include="Database\User.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddRoomPage.xaml.cs">
+      <DependentUpon>AddRoomPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddUserPage.xaml.cs">
       <DependentUpon>AddUserPage.xaml</DependentUpon>
     </Compile>
@@ -145,6 +149,7 @@
     <Compile Include="Pages\RoomPage.xaml.cs">
       <DependentUpon>RoomPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\ByteToImage.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
