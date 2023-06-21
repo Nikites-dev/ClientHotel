@@ -68,7 +68,6 @@ namespace ClientHotel.Pages
                      (DateTime.Parse(dateArrive.Text) <= o.DateArrival && DateTime.Parse(dateDeparture.Text) >= o.DateDeparture) ||
                      (DateTime.Parse(dateDeparture.Text) >= o.DateArrival && DateTime.Parse(dateDeparture.Text) <= o.DateDeparture) ||
                      (DateTime.Parse(dateArrive.Text) >= o.DateArrival && DateTime.Parse(dateArrive.Text) <= o.DateDeparture)).FirstOrDefault();
-          
 
                 if (room.Number == 215)
                 {

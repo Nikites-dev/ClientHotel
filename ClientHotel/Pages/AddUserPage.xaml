@@ -21,8 +21,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        
-        <Grid Grid.Column="1" >
+
+        <Grid Grid.Column="1" Style="{StaticResource HeaderPanel}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -30,60 +30,77 @@
 
             <TextBlock Text="Kazon Hotels" FontSize="20" Grid.Column="0" VerticalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Button x:Name="btnClients" Content="Add user" Grid.Column="1" Width="100"/>
-                <Button x:Name="btnOther" Content="Clients" Grid.Column="1" Width="100"/>
+                <Button x:Name="btnClients" Content="Add user" Grid.Column="1" Width="100" Style="{StaticResource BtnSecondary}"/>
+                <StackPanel Background="Black" Width="1" Height="20"></StackPanel>
+                <Button x:Name="btnOther" Content="Clients" Grid.Column="1" Width="100" Style="{StaticResource BtnSecondary}"/>
             </StackPanel>
         </Grid>
-        
-        <Grid Grid.Column="1" Grid.Row="1" Background="LightBlue">
+
+        <Grid Grid.Column="1" Grid.Row="1" Background="#F2F5F4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
-            <StackPanel Grid.Column="1" Background="LightCoral">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Text="Добавление гостя" Grid.Column="0"/>
-                    <Button Content="Закрыть" Grid.Column="1" Width="50" HorizontalAlignment="Right" Click="ButtonBase_OnClick"/>    
-                    
-                </Grid>
-                
+
+            <Border  Grid.Column="1" Margin="10" Height="500" Background="#81d8d0" x:Name="boxColor" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="10">
                 <StackPanel>
-                    <TextBlock Text="Фамилия:"/>
-                    <TextBox x:Name="edLName"/>
+                    <Grid Background="Transparent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+
+
+                        <TextBlock Text="Добавление гостя" FontSize="18" Grid.Column="1" Margin="5" HorizontalAlignment="Center"/>
+                        <Button Content="x Закрыть" Grid.Column="2" Width="60" VerticalAlignment="Center" HorizontalAlignment="Right" Click="ButtonBase_OnClick" Style="{StaticResource BtnClose}"/>
+
+                    </Grid>
+
+                    <StackPanel Style="{StaticResource cardRow}">
+                        <TextBlock Text="Фамилия:"/>
+                        <TextBox x:Name="edLName" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource cardRow}">
+                        <TextBlock Text="Имя:"/>
+                        <TextBox x:Name="edFName" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource cardRow}">
+                        <TextBlock Text="Отчество:"/>
+                        <TextBox x:Name="edPName" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource cardRow}">
+                        <TextBlock Text="Дата рождения:"/>
+                        <DatePicker x:Name="dateBirth"/>
+                    </StackPanel>
+
+                    <StackPanel Style="{StaticResource cardRow}">
+                        <TextBlock Text="Телефон:"/>
+                        <TextBox x:Name="edPhone" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
+
+
+
+                    <StackPanel Style="{StaticResource cardRow}">
+                        <Button Content="Добавить" Click="ButtonSave_OnClick" Style="{StaticResource BtnPrimary}">
+                            <Button.BorderBrush>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="White" Offset="0" />
+                                    <GradientStop Color="White" Offset="1" />
+                                </LinearGradientBrush>
+                            </Button.BorderBrush>
+                        </Button>
+                    </StackPanel>
+
+
+
                 </StackPanel>
-                
-                <StackPanel>
-                    <TextBlock Text="Имя:"/>
-                    <TextBox x:Name="edFName"/>
-                </StackPanel>
-                
-                <StackPanel>
-                    <TextBlock Text="Отчество:"/>
-                    <TextBox x:Name="edPName"/>
-                </StackPanel>
-                
-                <StackPanel>
-                    <TextBlock Text="Дата рождения:"/>
-                    <DatePicker x:Name="dateBirth"/>
-                </StackPanel>
-                
-                <StackPanel>
-                    <TextBlock Text="Телефон:"/>
-                    <TextBox x:Name="edPhone"/>
-                </StackPanel>
-                
-                <StackPanel>
-                    <Button Content="Добавить" Click="ButtonSave_OnClick"/>
-                </StackPanel>
-            </StackPanel>
-            
+            </Border>
         </Grid>
     </Grid>
 </Page>
