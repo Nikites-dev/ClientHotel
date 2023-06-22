@@ -36,8 +36,8 @@ namespace ClientHotel.Pages
                 return;
             }
 
-            dateArrive.Text = serevRoom.DateArrival.Value.ToString();
-            dateDeparture.Text = serevRoom.DateDeparture.Value.ToString();
+            dateArrive.Text = serevRoom.DateArrival.Value.ToShortDateString();
+            dateDeparture.Text = serevRoom.DateDeparture.Value.ToShortDateString();
             dateArrive.Focusable = false;
 
 

@@ -24,19 +24,25 @@
         <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Text="Sign in" HorizontalAlignment="Center" FontSize="20"/>
 
-            <StackPanel Orientation="Vertical" Margin="3">
-                <TextBlock Text="Login"/>
-                <TextBox x:Name="edLogin"/>
-            </StackPanel>
+            <Border  Margin="10" Background="#81d8d0" x:Name="boxColor" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="10">
+                <StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Login" />
+                        <TextBox x:Name="edLogin" Style="{StaticResource EdBox}"/>
+                    </StackPanel>
 
-            <StackPanel Orientation="Vertical" Margin="3">
-                <TextBlock Text="Password"/>
-                <PasswordBox x:Name="edPassword"/>
-            </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <TextBlock Text="Password"/>
+                        <PasswordBox x:Name="edPassword" Style="{StaticResource EdPasswordBox}"/>
+                    </StackPanel>
 
-            <StackPanel Margin="3">
-                <Button x:Name="btnSignIn" Content="Sign in" Click="btnSignIn_Click"/>
-            </StackPanel>
+                    <StackPanel Margin="5">
+                        <Button x:Name="btnSignIn" Content="Sign in" Click="btnSignIn_Click" Style="{StaticResource BtnPrimary}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            
+            
             
         </StackPanel>
         

@@ -86,5 +86,18 @@
             </Style.Resources>
         </Style>
 
+        <Style x:Key="EdPasswordBox" TargetType="PasswordBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Padding" Value="10, 5, 20, 5"/>
+
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        
     </Application.Resources>
 </Application>
